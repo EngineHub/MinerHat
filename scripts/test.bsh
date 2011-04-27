@@ -1,0 +1,5 @@
+p = new PlayerLook();
+p.yaw = Float.NaN;
+p.pitch = Float.NaN;
+p.onGround = true;
+client.send(p);
