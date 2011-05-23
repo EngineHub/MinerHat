@@ -33,4 +33,16 @@ public class SpawnPosition extends Packet {
     public byte getId() {
         return 6;
     }
+    
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getName() + " -> ");
+        result.append("X: ");
+        result.append(x);
+        result.append(" Y: ");
+        result.append(y);
+        result.append(" Z: ");
+        result.append(z);
+        return result.toString();
+    }
 }

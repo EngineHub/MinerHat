@@ -33,4 +33,8 @@ public class PreChunk extends Packet {
     public byte getId() {
         return 50;
     }
+    
+    public String toString(){
+        return this.getClass().getName() + " -> " + "X: " + x + " Y: " + y + " Initialize: " + initialize;
+    }
 }

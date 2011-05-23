@@ -27,4 +27,12 @@ public class UpdateHealth extends Packet {
     public byte getId() {
         return 8;
     }
+    
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getName() + " -> ");
+        result.append("Health: ");
+        result.append(health);
+        return result.toString();
+    }
 }

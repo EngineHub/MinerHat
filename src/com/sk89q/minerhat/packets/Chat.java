@@ -10,12 +10,12 @@ public class Chat extends Packet {
 
     @Override
     public void read(DataInputStream stream) throws IOException {
-        this.message = stream.readUTF();
+        this.message = read(stream, 119);
     }
 
     @Override
     public void write(DataOutputStream stream) throws IOException {
-        stream.writeUTF(this.message);
+        write(this.message, stream);
     }
 
     @Override
@@ -26,5 +26,9 @@ public class Chat extends Packet {
     @Override
     public byte getId() {
         return 3;
+    }
+    
+    public String toString(){
+        return this.getClass().getName() + " -> " + message;
     }
 }

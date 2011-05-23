@@ -13,6 +13,7 @@ public class WindowClick extends Packet {
     public short itemId;
     public byte itemCount;
     public short itemUses;
+    public boolean f;
 
     @Override
     public void read(DataInputStream stream) throws IOException {
@@ -20,8 +21,9 @@ public class WindowClick extends Packet {
         this.slot = stream.readShort();
         this.rightClick = stream.readByte();
         this.actionNum = stream.readShort();
+        this.f = stream.readBoolean();
         this.itemId = stream.readShort();
-
+        
         if (itemId >= 0) {
             itemCount = stream.readByte();
             itemUses = stream.readShort();
@@ -34,6 +36,7 @@ public class WindowClick extends Packet {
         stream.writeShort(this.slot);
         stream.writeByte(this.rightClick);
         stream.writeShort(this.actionNum);
+        stream.writeBoolean(this.f);
         stream.writeShort(this.itemId);
         
         if (itemId >= 0) {

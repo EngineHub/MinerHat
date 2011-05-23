@@ -54,4 +54,14 @@ public class WindowItems extends Packet {
     public byte getId() {
         return 104;
     }
+    
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getName() + " -> ");
+        result.append(" ID: ");
+        result.append(id);
+        result.append(" Items: ");
+        result.append(items.toString());
+        return result.toString();
+    }
 }

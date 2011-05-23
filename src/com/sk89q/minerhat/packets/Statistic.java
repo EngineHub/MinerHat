@@ -4,31 +4,31 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class UpdateTime extends Packet {
+public class Statistic extends Packet {
 
-    public long time;
+    int id;
+    byte amount;
+    
+    @Override
+    public byte getId() {
+        return 6;
+    }
 
     @Override
     public void read(DataInputStream stream) throws IOException {
-        this.time = stream.readLong();
+        this.id = stream.readInt();
+        this.amount = stream.readByte();        
     }
 
     @Override
     public void write(DataOutputStream stream) throws IOException {
-        stream.writeLong(this.time);
+        stream.writeInt(this.id);
+        stream.writeByte(this.amount);
     }
 
     @Override
     public int length() {
-        return 8;
+        return 0;
     }
 
-    @Override
-    public byte getId() {
-        return 4;
-    }
-
-    public String toString() {
-        return this.getClass().getName() + " -> " + Long.toString(time);
-    }
 }

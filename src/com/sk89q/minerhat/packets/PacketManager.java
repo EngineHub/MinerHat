@@ -9,11 +9,16 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.sk89q.minerhat.MinecraftProxyServerClient;
 
 public class PacketManager {
     
-    private static final Map<Byte, Class<? extends Packet>> packets =
-            new HashMap<Byte, Class<? extends Packet>>();
+    private static final Map<Byte, Class<? extends Packet>> packets = new HashMap<Byte, Class<? extends Packet>>();
+    
+    private static final Logger logger = Logger.getLogger(MinecraftProxyServerClient.class.getName());
     
     static {
         packets.put((byte) 0, KeepAlive.class);
@@ -60,6 +65,7 @@ public class PacketManager {
         packets.put((byte) 54, PlayNoteBlock.class);
         packets.put((byte) 60, Explosion.class);
         packets.put((byte) 70, InvalidBed.class);
+        packets.put((byte) 71, Weather.class);
         packets.put((byte) 100, OpenWindow.class);
         packets.put((byte) 101, CloseWindow.class);
         packets.put((byte) 102, WindowClick.class);
@@ -68,11 +74,21 @@ public class PacketManager {
         packets.put((byte) 105, CraftProgressBar.class);
         packets.put((byte) 106, Transaction.class);
         packets.put((byte) 130, UpdateSign.class);
+        packets.put((byte) 200, Statistic.class);
         packets.put((byte) 255, KickDisconnect.class);
+    }
+    
+    public static boolean containsID(byte id){
+        if(packets.containsKey(id)){
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public static Class<? extends Packet> get(byte id) throws UnknownPacketException {
         Class<? extends Packet> cls = packets.get(id);
+        //logger.log(Level.INFO,"Packet ID -> " + id);
         if (cls == null) {
             throw new UnknownPacketException();
         }
@@ -97,8 +113,7 @@ public class PacketManager {
         return packet;
     }
     
-    public static Packet read(byte id, DataInputStream stream)
-            throws UnknownPacketException, IOException {
+    public static Packet read(byte id, DataInputStream stream) throws UnknownPacketException, IOException {
         Packet packet = construct(id);
         packet.read(stream);
         return packet;

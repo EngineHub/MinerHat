@@ -18,7 +18,7 @@ public class NamedEntitySpawn extends Packet {
     @Override
     public void read(DataInputStream datainputstream) throws IOException {
         this.eid = datainputstream.readInt();
-        this.name = datainputstream.readUTF();
+        this.name = read(datainputstream, 16);
         this.x = datainputstream.readInt();
         this.y = datainputstream.readInt();
         this.z = datainputstream.readInt();
@@ -30,7 +30,8 @@ public class NamedEntitySpawn extends Packet {
     @Override
     public void write(DataOutputStream dataoutputstream) throws IOException {
         dataoutputstream.writeInt(this.eid);
-        dataoutputstream.writeUTF(this.name);
+        //dataoutputstream.writeUTF(this.name);
+        write(this.name, dataoutputstream);
         dataoutputstream.writeInt(this.x);
         dataoutputstream.writeInt(this.y);
         dataoutputstream.writeInt(this.z);

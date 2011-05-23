@@ -11,6 +11,20 @@ public class UpdateSign extends Packet {
     public int z;
     public String[] lines;
 
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getName() + " -> ");
+        result.append("X: ");
+        result.append(x);
+        result.append(" Y: ");
+        result.append(y);
+        result.append(" Z: ");
+        result.append(z);
+        result.append(" Lines: ");
+        result.append(lines.toString());
+        return result.toString();
+    }
+    
     @Override
     public void read(DataInputStream stream) throws IOException {
         this.x = stream.readInt();
@@ -19,7 +33,8 @@ public class UpdateSign extends Packet {
         this.lines = new String[4];
 
         for (int i = 0; i < 4; ++i) {
-            this.lines[i] = stream.readUTF();
+            //this.lines[i] = stream.readUTF();
+            this.lines[i] = read(stream, 15);
         }
     }
 
@@ -30,7 +45,8 @@ public class UpdateSign extends Packet {
         stream.writeInt(this.z);
 
         for (int i = 0; i < 4; ++i) {
-            stream.writeUTF(this.lines[i]);
+            //stream.writeUTF(this.lines[i]);
+            write(this.lines[i], stream);
         }
     }
 

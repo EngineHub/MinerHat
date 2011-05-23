@@ -8,15 +8,14 @@ public class Login extends Packet {
 
     public int version;
     public String username;
-    public String password;
     public long mapSeed;
     public byte dimension;
 
     @Override
     public void read(DataInputStream stream) throws IOException {
         this.version = stream.readInt();
-        this.username = stream.readUTF();
-        this.password = stream.readUTF();
+        //this.username = stream.readUTF();
+        this.username = read(stream, 16);
         this.mapSeed = stream.readLong();
         this.dimension = stream.readByte();
     }
@@ -24,19 +23,33 @@ public class Login extends Packet {
     @Override
     public void write(DataOutputStream stream) throws IOException {
         stream.writeInt(this.version);
-        stream.writeUTF(this.username);
-        stream.writeUTF(this.password);
+        //stream.writeUTF(this.username);
+        write(this.username, stream);
         stream.writeLong(this.mapSeed);
         stream.writeByte(this.dimension);
     }
 
     @Override
     public int length() {
-        return 4 + this.username.length() + this.password.length() + 4 + 5;
+        return 4 + this.username.length() + 4 + 5;
     }
 
     @Override
     public byte getId() {
         return 1;
+    }
+    
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getName() + " -> ");
+        result.append("Username: ");
+        result.append(username);
+        result.append(" Version: ");
+        result.append(version);
+        result.append(" MapSeed: ");
+        result.append(mapSeed);
+        result.append(" Dimension: ");
+        result.append(dimension);
+        return result.toString();
     }
 }

@@ -27,4 +27,12 @@ public class Player extends Packet {
     public byte getId() {
         return 10;
     }
+    
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getName() + " -> ");
+        result.append("OnGround: ");
+        result.append(onGround);
+        return result.toString();
+    }
 }

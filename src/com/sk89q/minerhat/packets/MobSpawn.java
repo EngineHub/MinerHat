@@ -50,4 +50,20 @@ public class MobSpawn extends Packet {
     public byte getId() {
         return 24;
     }
+    
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getName() + " -> ");
+        result.append(" EntityID: ");
+        result.append(eid);
+        result.append(" Type: ");
+        result.append(type);
+        result.append("X: ");
+        result.append(x);
+        result.append(" Y: ");
+        result.append(y);
+        result.append(" Z: ");
+        result.append(z);
+        return result.toString();
+    }
 }

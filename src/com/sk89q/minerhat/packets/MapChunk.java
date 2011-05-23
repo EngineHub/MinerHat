@@ -49,4 +49,22 @@ public class MapChunk extends Packet {
     public byte getId() {
         return 51;
     }
+    
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getName() + " -> ");
+        result.append("X: ");
+        result.append(x);
+        result.append(" Y: ");
+        result.append(y);
+        result.append(" Z: ");
+        result.append(z);
+        result.append(" SizeX: ");
+        result.append(sizeX);
+        result.append(" SizeY: ");
+        result.append(sizeY);
+        result.append(" SizeZ: ");
+        result.append(sizeZ);
+        return result.toString();
+    }
 }

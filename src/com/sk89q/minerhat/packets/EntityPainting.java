@@ -18,17 +18,19 @@ public class EntityPainting extends Packet {
     @Override
     public void read(DataInputStream stream) throws IOException {
         this.eid = stream.readInt();
-        this.title = stream.readUTF();
+        //this.title = stream.readUTF();
+        this.title = read(stream, "SkullAndRoses".length());
         this.x = stream.readInt();
         this.y = stream.readInt();
         this.z = stream.readInt();
         this.direction = stream.readInt();
     }
-
+    
     @Override
     public void write(DataOutputStream stream) throws IOException {
         stream.writeInt(this.eid);
-        stream.writeUTF(this.title);
+        //stream.writeUTF(this.title);
+        write(this.title,stream);
         stream.writeInt(this.x);
         stream.writeInt(this.y);
         stream.writeInt(this.z);

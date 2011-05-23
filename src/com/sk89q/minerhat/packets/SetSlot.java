@@ -44,4 +44,20 @@ public class SetSlot extends Packet {
     public byte getId() {
         return 103;
     }
+    
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getName() + " -> ");
+        result.append(" ID: ");
+        result.append(id);
+        result.append(" Slot: ");
+        result.append(slot);
+        result.append(" ItemCount: ");
+        result.append(itemCount);
+        result.append(" ItemID: ");
+        result.append(itemId);
+        result.append(" ItemUses:");
+        result.append(itemUses);
+        return result.toString();
+    }
 }
