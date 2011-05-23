@@ -78,7 +78,7 @@ public class MinerHat {
                 } else {
                     System.out.println("host <host>");
                 }
-            } else if (parts[0].equalsIgnoreCase("host")) {
+            } else if (parts[0].equalsIgnoreCase("port")) {
                 if (parts.length == 2) {
                     try {
                         server.setTargetPort(Integer.parseInt(parts[1]));
