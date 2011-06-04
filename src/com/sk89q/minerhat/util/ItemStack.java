@@ -39,4 +39,8 @@ public class ItemStack {
     public void setData(int data) {
         this.data = data;
     }
+    
+    public String toString(){
+        return "ID: " + id + " Count: " + count + " Data: " + data;
+    }
 }

@@ -24,8 +24,7 @@ public class MinecraftProxyServerClient implements Runnable {
     public final Object outgoingLock = new Object();
     public final Object incomingLock = new Object();
 
-    private static final Logger logger = Logger
-            .getLogger(MinecraftProxyServerClient.class.getName());
+    private static final Logger logger = Logger.getLogger(MinecraftProxyServerClient.class.getName());
 
     private boolean running = true;
     private MinecraftProxyFrame frame;
@@ -35,8 +34,7 @@ public class MinecraftProxyServerClient implements Runnable {
     private DataInputStream in;
     private MinecraftClientConnection client;
 
-    public MinecraftProxyServerClient(MinecraftProxyServer server, Socket sock)
-            throws IOException {
+    public MinecraftProxyServerClient(MinecraftProxyServer server, Socket sock) throws IOException {
         this.server = server;
         this.sock = sock;
 
@@ -56,7 +54,6 @@ public class MinecraftProxyServerClient implements Runnable {
         logger.log(level, "(" + getLoggerId() + ") " + msg);
 
         SwingUtilities.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 frame.log(msg);
             }
@@ -67,7 +64,6 @@ public class MinecraftProxyServerClient implements Runnable {
         logger.log(level, "(" + getLoggerId() + ") " + msg, t);
 
         SwingUtilities.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 frame.log(msg);
             }
@@ -76,13 +72,11 @@ public class MinecraftProxyServerClient implements Runnable {
 
     public void run() {
         // Connect client
-        client = new MinecraftClientConnection(this,
-                server.getTargetHost(), server.getTargetPort());
+        client = new MinecraftClientConnection(this,server.getTargetHost(), server.getTargetPort(), this);
         
         frame = new MinecraftProxyFrame(this);
 
         SwingUtilities.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 frame.setVisible(true);
                 frame.setTitle("MinerHat: Minecraft proxy from " + getLoggerId());
@@ -90,9 +84,7 @@ public class MinecraftProxyServerClient implements Runnable {
         });
 
         try {
-            log(Level.INFO,
-                    "Establishing client connection to "
-                            + server.getTargetHost() + "...");
+            log(Level.INFO,"Establishing client connection to " + server.getTargetHost() + "...");
             client.connect();
             Thread thread = new Thread(client);
             thread.start();
@@ -104,16 +96,24 @@ public class MinecraftProxyServerClient implements Runnable {
                 Packet packet;
 
                 try {
+                    if(!(PacketManager.containsID(id))){
+                        Logger.getLogger(MinecraftProxyServerClient.class.getName()).log(Level.SEVERE, "--------------------------------");
+                        Logger.getLogger(MinecraftProxyServerClient.class.getName()).log(Level.SEVERE, "Packet " + id + " doesn't exist!");
+                        Logger.getLogger(MinecraftProxyServerClient.class.getName()).log(Level.SEVERE, "--------------------------------");
+                        continue;
+                    }
                     packet = PacketManager.read(id, in);
                 } catch (UnknownPacketException ex) {
-                    Logger.getLogger(MinecraftProxyServerClient.class.getName()).log(
-                            Level.SEVERE, null, ex);
+                    Logger.getLogger(MinecraftProxyServerClient.class.getName()).log(Level.SEVERE, null, ex);
                     sock.close();
                     break;
                 }
-
-                //log(Level.INFO, "->" + packet.toString());
-
+                
+                String name = packet.toString();
+                //if (!(name.contains("Entity")) || !(name.contains("Chunk")) || !(name.contains("PlayerPosition"))) {
+                    log(Level.INFO, "Client -> Server -> " + name);
+                //}
+                
                 try {
                     synchronized (outgoingLock) {
                         client.send(packet);
@@ -132,7 +132,6 @@ public class MinecraftProxyServerClient implements Runnable {
         log(Level.INFO, "Proxy connection shutdown");
 
         SwingUtilities.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 frame.handleEndedConnection();
             }
@@ -156,7 +155,6 @@ public class MinecraftProxyServerClient implements Runnable {
             final Login loginPacket = (Login) packet;
 
             SwingUtilities.invokeLater(new Runnable() {
-                @Override
                 public void run() {
                     frame.addStatistic("World seed", String.valueOf(loginPacket.mapSeed));
                     frame.addStatistic("Protocol version", String.valueOf(loginPacket.version));

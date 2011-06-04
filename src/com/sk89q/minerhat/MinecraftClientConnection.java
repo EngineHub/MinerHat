@@ -14,7 +14,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 package com.sk89q.minerhat;
 
@@ -26,6 +26,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import com.sk89q.minerhat.packets.Packet;
 import com.sk89q.minerhat.packets.PacketManager;
 import com.sk89q.minerhat.packets.PacketManager.UnknownPacketException;
@@ -39,12 +40,27 @@ class MinecraftClientConnection implements Runnable {
     private Socket sock;
     private DataOutputStream out;
     private DataInputStream in;
+    private MinecraftProxyServerClient that;
+    
+    private static final Logger logger = Logger.getLogger(MinecraftProxyServerClient.class.getName());
 
-    public MinecraftClientConnection(MinecraftProxyServerClient parent,
-            InetAddress host, int port) {
+    public MinecraftClientConnection(MinecraftProxyServerClient parent, InetAddress host, int port, MinecraftProxyServerClient minecraftProxyServerClient) {
         this.parent = parent;
         this.host = host;
         this.port = port;
+        this.that = minecraftProxyServerClient;
+    }
+
+    public String getLoggerId() {
+        return sock.getInetAddress().getHostAddress() + ":" + sock.getPort();
+    }
+
+    protected void log(Level level, final String msg) {
+        logger.log(level, "(" + getLoggerId() + ") " + msg);
+    }
+
+    protected void log(Level level, final String msg, Throwable t) {
+        logger.log(level, "(" + getLoggerId() + ") " + msg, t);
     }
 
     public void connect() throws IOException {
@@ -61,13 +77,23 @@ class MinecraftClientConnection implements Runnable {
                 Packet packet;
 
                 try {
+                    if(!(PacketManager.containsID(id))){
+                        Logger.getLogger(MinecraftProxyServerClient.class.getName()).log(Level.SEVERE, "Packet " + id + " doesn't exist!");
+                        continue;
+                    }
                     packet = PacketManager.read(id, in);
+                    // Logger.getLogger(MinecraftProxyServerClient.class.getName()).log(Level.INFO, "->" + packet.toString());
+                    String name = packet.toString();
+                    //if (!(name.contains("Entity")) && !(name.contains("Chunk")) && !(name.contains("PlayerPosition")) && !(name.contains("RelativeEntity"))) {
+                        that.log(Level.INFO, "Server -> Client -> " + name);
+                    //}
                 } catch (UnknownPacketException ex) {
-                    Logger.getLogger(MinecraftProxyServerClient.class.getName())
-                            .log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MinecraftProxyServerClient.class.getName()).log(Level.SEVERE, null, ex);
                     sock.close();
                     break;
                 }
+
+                // log(Level.INFO, "->" + packet.toString());
 
                 parent.handleIncoming(packet);
             }
