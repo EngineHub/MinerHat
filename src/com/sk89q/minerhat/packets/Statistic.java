@@ -11,7 +11,7 @@ public class Statistic extends Packet {
     
     @Override
     public byte getId() {
-        return 6;
+        return (byte) 200;
     }
 
     @Override
@@ -28,7 +28,6 @@ public class Statistic extends Packet {
 
     @Override
     public int length() {
-        return 0;
+        return 6;
     }
-
 }
