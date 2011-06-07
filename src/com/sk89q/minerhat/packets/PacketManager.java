@@ -15,63 +15,63 @@ public class PacketManager {
     private static final Map<Byte, Class<? extends Packet>> packets = new HashMap<Byte, Class<? extends Packet>>();
     
     static {
-        packets.put((byte) 0, KeepAlive.class);
-        packets.put((byte) 1, Login.class);
-        packets.put((byte) 2, Handshake.class);
-        packets.put((byte) 3, Chat.class);
-        packets.put((byte) 4, UpdateTime.class);
-        packets.put((byte) 5, EntityEquipment.class);
-        packets.put((byte) 6, SpawnPosition.class);
-        packets.put((byte) 7, UseEntity.class);
-        packets.put((byte) 8, UpdateHealth.class);
-        packets.put((byte) 9, Respawn.class);
-        packets.put((byte) 10, Player.class);
-        packets.put((byte) 11, PlayerPosition.class);
-        packets.put((byte) 12, PlayerLook.class);
-        packets.put((byte) 13, PlayerLookMove.class);
-        packets.put((byte) 14, BlockDig.class);
-        packets.put((byte) 15, PlaceBlock.class);
-        packets.put((byte) 16, HeldSlotChange.class);
-        packets.put((byte) 17, UseBed.class);
-        packets.put((byte) 18, Animation.class);
-        packets.put((byte) 19, EntityAction.class);
-        packets.put((byte) 20, NamedEntitySpawn.class);
-        packets.put((byte) 21, PickupSpawn.class);
-        packets.put((byte) 22, CollectItem.class);
-        packets.put((byte) 23, VehicleSpawn.class);
-        packets.put((byte) 24, MobSpawn.class);
-        packets.put((byte) 25, EntityPainting.class);
-        packets.put((byte) 27, Packet027.class);
-        packets.put((byte) 28, EntityVelocity.class);
-        packets.put((byte) 29, DestroyEntity.class);
-        packets.put((byte) 30, Entity.class);
-        packets.put((byte) 31, RelativeEntityMove.class);
-        packets.put((byte) 32, EntityLook.class);
-        packets.put((byte) 33, RelativeEntityMoveLook.class);
-        packets.put((byte) 34, EntityTeleport.class);
-        packets.put((byte) 38, EntityStatus.class);
-        packets.put((byte) 39, AttachEntity.class);
-        packets.put((byte) 40, EntityMetadata.class);
-        packets.put((byte) 50, PreChunk.class);
-        packets.put((byte) 51, MapChunk.class);
-        packets.put((byte) 52, MultiBlockChange.class);
-        packets.put((byte) 53, BlockChange.class);
-        packets.put((byte) 54, PlayNoteBlock.class);
-        packets.put((byte) 60, Explosion.class);
-        packets.put((byte) 61, Packet61.class);
-        packets.put((byte) 70, InvalidBed.class);
-        packets.put((byte) 71, Weather.class);
-        packets.put((byte) 100, OpenWindow.class);
-        packets.put((byte) 101, CloseWindow.class);
-        packets.put((byte) 102, WindowClick.class);
-        packets.put((byte) 103, SetSlot.class);
-        packets.put((byte) 104, WindowItems.class);
-        packets.put((byte) 105, CraftProgressBar.class);
-        packets.put((byte) 106, Transaction.class);
-        packets.put((byte) 130, UpdateSign.class);
-        packets.put((byte) 131, Packet131.class);
-        packets.put((byte) 200, Statistic.class);
-        packets.put((byte) 255, KickDisconnect.class);
+        packets.put((byte) 0, Packet0KeepAlive.class);
+        packets.put((byte) 1, Packet1Login.class);
+        packets.put((byte) 2, Packet2Handshake.class);
+        packets.put((byte) 3, Packet3Chat.class);
+        packets.put((byte) 4, Packet4UpdateTime.class);
+        packets.put((byte) 5, Packet5EntityEquipment.class);
+        packets.put((byte) 6, Packet6SpawnPosition.class);
+        packets.put((byte) 7, Packet7UseEntity.class);
+        packets.put((byte) 8, Packet8UpdateHealth.class);
+        packets.put((byte) 9, Packet9Respawn.class);
+        packets.put((byte) 10, Packet10Flying.class);
+        packets.put((byte) 11, Packet11PlayerPosition.class);
+        packets.put((byte) 12, Packet12PlayerLook.class);
+        packets.put((byte) 13, Packet13PlayerLookMove.class);
+        packets.put((byte) 14, Packet14BlockDig.class);
+        packets.put((byte) 15, Packet15Place.class);
+        packets.put((byte) 16, Packet16BlockItemSwitch.class);
+        packets.put((byte) 17, Packet17UseBed.class);
+        packets.put((byte) 18, Packet18ArmAnimation.class);
+        packets.put((byte) 19, Packet19EntityAction.class);
+        packets.put((byte) 20, Packet20NamedEntitySpawn.class);
+        packets.put((byte) 21, Packet21PickupSpawn.class);
+        packets.put((byte) 22, Packet22Collect.class);
+        packets.put((byte) 23, Packet23VehicleSpawn.class);
+        packets.put((byte) 24, Packet24MobSpawn.class);
+        packets.put((byte) 25, Packet25EntityPainting.class);
+        packets.put((byte) 27, Packet27.class);
+        packets.put((byte) 28, Packet28EntityVelocity.class);
+        packets.put((byte) 29, Packet29DestroyEntity.class);
+        packets.put((byte) 30, Packet30Entity.class);
+        packets.put((byte) 31, Packet31RelativeEntityMove.class);
+        packets.put((byte) 32, Packet32EntityLook.class);
+        packets.put((byte) 33, Packet33RelativeEntityMoveLook.class);
+        packets.put((byte) 34, Packet34EntityTeleport.class);
+        packets.put((byte) 38, Packet38EntityStatus.class);
+        packets.put((byte) 39, Packet39AttachEntity.class);
+        packets.put((byte) 40, Packet40EntityMetadata.class);
+        packets.put((byte) 50, Packet50PreChunk.class);
+        packets.put((byte) 51, Packet51MapChunk.class);
+        packets.put((byte) 52, Packet52MultiBlockChange.class);
+        packets.put((byte) 53, Packet53BlockChange.class);
+        packets.put((byte) 54, Packet54PlayNoteBlock.class);
+        packets.put((byte) 60, Packet60Explosion.class);
+        packets.put((byte) 61, Packet61DoorChange.class);
+        packets.put((byte) 70, Packet70Bed.class);
+        packets.put((byte) 71, Packet71Weather.class);
+        packets.put((byte) 100, Packet100OpenWindow.class);
+        packets.put((byte) 101, Packet101CloseWindow.class);
+        packets.put((byte) 102, Packet102WindowClick.class);
+        packets.put((byte) 103, Packet103SetSlot.class);
+        packets.put((byte) 104, Packet104WindowItems.class);
+        packets.put((byte) 105, Packet105CraftProgressBar.class);
+        packets.put((byte) 106, Packet106Transaction.class);
+        packets.put((byte) 130, Packet130UpdateSign.class);
+        packets.put((byte) 131, Packet131MapData.class);
+        packets.put((byte) 200, Packet200Statistic.class);
+        packets.put((byte) 255, Packet255KickDisconnect.class);
     }
     
     public static boolean containsID(byte id){
@@ -101,9 +101,7 @@ public class PacketManager {
             throw new UnknownPacketException(e);
         }
         if (id != packet.getId()) {
-            throw new RuntimeException("Packet ID does not match read ID for "
-                    + packet.getClass().getCanonicalName() + "; packet says "
-                    + packet.getId() + "; actual is " + id);
+            throw new RuntimeException("Packet ID does not match read ID for " + packet.getClass().getCanonicalName() + "; packet says " + packet.getId() + "; actual is " + id);
         }
         return packet;
     }

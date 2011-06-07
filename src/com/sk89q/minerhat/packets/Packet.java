@@ -36,5 +36,4 @@ public abstract class Packet {
             dataoutputstream.writeChars(s);
         }
     }
-    
 }
