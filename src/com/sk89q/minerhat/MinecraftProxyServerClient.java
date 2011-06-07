@@ -10,7 +10,7 @@ import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
-import com.sk89q.minerhat.packets.Login;
+import com.sk89q.minerhat.packets.Packet1Login;
 import com.sk89q.minerhat.packets.Packet;
 import com.sk89q.minerhat.packets.PacketManager;
 import com.sk89q.minerhat.packets.PacketManager.UnknownPacketException;
@@ -110,9 +110,7 @@ public class MinecraftProxyServerClient implements Runnable {
                 }
                 
                 String name = packet.toString();
-                //if (!(name.contains("Entity")) || !(name.contains("Chunk")) || !(name.contains("PlayerPosition"))) {
-                    log(Level.INFO, "Client -> Server -> " + name);
-                //}
+                log(Level.INFO, "Client -> Server -> " + name);
                 
                 try {
                     synchronized (outgoingLock) {
@@ -151,12 +149,13 @@ public class MinecraftProxyServerClient implements Runnable {
     public void handleIncoming(Packet packet) throws IOException {
         //log(Level.INFO, "<-" + packet.toString());
 
-        if (packet instanceof Login) {
-            final Login loginPacket = (Login) packet;
+        if (packet instanceof Packet1Login) {
+            final Packet1Login loginPacket = (Packet1Login) packet;
 
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
                     frame.addStatistic("World seed", String.valueOf(loginPacket.mapSeed));
+                    frame.addStatistic("World dimension", String.valueOf(loginPacket.dimension));
                     frame.addStatistic("Protocol version", String.valueOf(loginPacket.version));
                 }
             });
