@@ -82,6 +82,7 @@ class MinecraftClientConnection implements Runnable {
                         continue;
                     }
                     packet = PacketManager.read(id, in);
+                    packet.toServer = false;
                     // Logger.getLogger(MinecraftProxyServerClient.class.getName()).log(Level.INFO, "->" + packet.toString());
                     String name = packet.toString();
                     //if (!(name.contains("Entity")) && !(name.contains("Chunk")) && !(name.contains("PlayerPosition")) && !(name.contains("RelativeEntity"))) {

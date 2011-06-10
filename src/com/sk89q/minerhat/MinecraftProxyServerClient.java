@@ -103,6 +103,7 @@ public class MinecraftProxyServerClient implements Runnable {
                         continue;
                     }
                     packet = PacketManager.read(id, in);
+                    packet.toServer = true;
                 } catch (UnknownPacketException ex) {
                     Logger.getLogger(MinecraftProxyServerClient.class.getName()).log(Level.SEVERE, null, ex);
                     sock.close();

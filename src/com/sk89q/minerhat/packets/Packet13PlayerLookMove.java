@@ -7,8 +7,8 @@ import java.io.IOException;
 public class Packet13PlayerLookMove extends Packet10Flying {
     
     public double x;
-    public double y;
-    public double stance;
+    public double a; // Either Y or Stance -- Y if from Client, otherwise it's Stance -- Stupid Notch
+    public double b; // Either Y or Stance -- Stance if from Client, other it's Y -- Stupid Notch
     public double z;
     public float yaw;
     public float pitch;
@@ -16,9 +16,9 @@ public class Packet13PlayerLookMove extends Packet10Flying {
     @Override
     public void read(DataInputStream stream) throws IOException {
         this.x = stream.readDouble();
-        this.y = stream.readDouble();
+        this.a = stream.readDouble();
+        this.b = stream.readDouble();
         this.z = stream.readDouble();
-        this.stance = stream.readDouble();
         this.yaw = stream.readFloat();
         this.pitch = stream.readFloat();
         super.read(stream);
@@ -27,9 +27,9 @@ public class Packet13PlayerLookMove extends Packet10Flying {
     @Override
     public void write(DataOutputStream stream) throws IOException {
         stream.writeDouble(this.x);
-        stream.writeDouble(this.y);
+        stream.writeDouble(this.a);
+        stream.writeDouble(this.b);
         stream.writeDouble(this.z);
-        stream.writeDouble(this.stance);
         stream.writeFloat(this.yaw);
         stream.writeFloat(this.pitch);
         super.write(stream);
@@ -49,9 +49,15 @@ public class Packet13PlayerLookMove extends Packet10Flying {
         StringBuilder result = new StringBuilder();
         result.append(this.getClass().getName() + " -> ");
         result.append("X: ");
-        result.append(x);
+        result.append(this.x);
         result.append(" Y: ");
-        result.append(y);
+        
+        if(this.toServer){
+            result.append(this.a);            
+        } else {
+            result.append(this.b);
+        }
+        
         result.append(" Z: ");
         result.append(z);
         result.append(" Yaw: ");
@@ -59,7 +65,13 @@ public class Packet13PlayerLookMove extends Packet10Flying {
         result.append(" Pitch: ");
         result.append(pitch);
         result.append(" Stance: ");
-        result.append(stance);
+
+        if(this.toServer){
+            result.append(this.b);            
+        } else {
+            result.append(this.a);
+        }
+        
         return result.toString();
     }
 }

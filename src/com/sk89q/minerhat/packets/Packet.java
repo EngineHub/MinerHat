@@ -9,6 +9,7 @@ public abstract class Packet {
     public abstract void read(DataInputStream datainputstream) throws IOException;
     public abstract void write(DataOutputStream dataoutputstream) throws IOException;
     public abstract int length();
+    public boolean toServer;
     
     public static String read(DataInputStream datainputstream, int i) throws IOException {
         short short1 = datainputstream.readShort();
