@@ -20,14 +20,14 @@ public class Packet3Chat extends Packet {
 
     @Override
     public int length() {
-        return this.message.length();
+        return 2 + this.message.length() * 2;
     }
 
     @Override
     public byte getId() {
         return 3;
     }
-    
+
     public String toString(){
         return this.getClass().getName() + " -> " + message;
     }
