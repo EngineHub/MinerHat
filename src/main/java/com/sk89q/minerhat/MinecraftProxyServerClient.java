@@ -16,7 +16,7 @@ import com.sk89q.minerhat.packets.PacketManager;
 import com.sk89q.minerhat.packets.PacketManager.UnknownPacketException;
 
 /**
- * 
+ *
  * @author sk89q
  */
 public class MinecraftProxyServerClient implements Runnable {
@@ -73,7 +73,7 @@ public class MinecraftProxyServerClient implements Runnable {
     public void run() {
         // Connect client
         client = new MinecraftClientConnection(this,server.getTargetHost(), server.getTargetPort(), this);
-        
+
         frame = new MinecraftProxyFrame(this);
 
         SwingUtilities.invokeLater(new Runnable() {
@@ -109,10 +109,10 @@ public class MinecraftProxyServerClient implements Runnable {
                     sock.close();
                     break;
                 }
-                
+
                 String name = packet.toString();
                 log(Level.INFO, "Client -> Server -> " + name);
-                
+
                 try {
                     synchronized (outgoingLock) {
                         client.send(packet);

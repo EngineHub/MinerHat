@@ -10,13 +10,11 @@ public class Packet2Handshake extends Packet {
 
     @Override
     public void read(DataInputStream stream) throws IOException {
-        //this.username = stream.readUTF();
         this.username = read(stream, 32);
     }
 
     @Override
     public void write(DataOutputStream stream) throws IOException {
-        //stream.writeUTF(this.username);
         write(this.username, stream);
     }
 
@@ -29,7 +27,7 @@ public class Packet2Handshake extends Packet {
     public byte getId() {
         return 2;
     }
-    
+
     public String toString(){
         StringBuilder result = new StringBuilder();
         result.append(this.getClass().getName() + " -> ");

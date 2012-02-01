@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class MinecraftProxyServer implements Runnable {
 
     private static final Logger logger = Logger.getLogger(MinecraftProxyServer.class.getName());
-    
+
     private int port;
     private InetAddress targetHost;
     private int targetPort;
@@ -67,6 +67,7 @@ public class MinecraftProxyServer implements Runnable {
         try {
             listen();
         } catch (IOException ex) {
+            System.out.println("Didn't find server!");
             Logger.getLogger(MinecraftProxyServer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

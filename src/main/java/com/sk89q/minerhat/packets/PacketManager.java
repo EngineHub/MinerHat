@@ -11,9 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PacketManager {
-    
+
     private static final Map<Byte, Class<? extends Packet>> packets = new HashMap<Byte, Class<? extends Packet>>();
-    
+
     static {
         packets.put((byte) 0, Packet0KeepAlive.class);
         packets.put((byte) 1, Packet1Login.class);
@@ -71,9 +71,10 @@ public class PacketManager {
         packets.put((byte) 130, Packet130UpdateSign.class);
         packets.put((byte) 131, Packet131MapData.class);
         packets.put((byte) 200, Packet200Statistic.class);
+        packets.put((byte) 254, Packet254ServerListPing.class);
         packets.put((byte) 255, Packet255KickDisconnect.class);
     }
-    
+
     public static boolean containsID(byte id){
         if(packets.containsKey(id)){
             return true;
@@ -81,7 +82,7 @@ public class PacketManager {
             return false;
         }
     }
-    
+
     public static Class<? extends Packet> get(byte id) throws UnknownPacketException {
         Class<? extends Packet> cls = packets.get(id);
         if (cls == null) {
@@ -89,7 +90,7 @@ public class PacketManager {
         }
         return cls;
     }
-    
+
     public static Packet construct(byte id) throws UnknownPacketException {
         Class<? extends Packet> cls = get(id);
         Packet packet;
@@ -105,23 +106,23 @@ public class PacketManager {
         }
         return packet;
     }
-    
+
     public static Packet read(byte id, DataInputStream stream) throws UnknownPacketException, IOException {
         Packet packet = construct(id);
         packet.read(stream);
         return packet;
     }
-    
+
     public static class UnknownPacketException extends Exception {
         private static final long serialVersionUID = -8815444824778417409L;
-        
+
         public UnknownPacketException() {
             super();
         }
-        
+
         public UnknownPacketException(Throwable t) {
             super(t);
         }
     }
-    
+
 }

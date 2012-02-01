@@ -10,7 +10,7 @@ public abstract class Packet {
     public abstract void write(DataOutputStream dataoutputstream) throws IOException;
     public abstract int length();
     public boolean toServer;
-    
+
     public static String read(DataInputStream datainputstream, int i) throws IOException {
         short short1 = datainputstream.readShort();
 
@@ -28,7 +28,7 @@ public abstract class Packet {
             return stringbuilder.toString();
         }
     }
-    
+
     public static void write(String s, DataOutputStream dataoutputstream) throws IOException {
         if (s.length() > 32767) {
             throw new IOException("String too big");

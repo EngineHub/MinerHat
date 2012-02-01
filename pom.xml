@@ -17,6 +17,7 @@
 		<url>http://www.sk89q.com</url>
 	</organization>
 	<build>
+        <defaultGoal>clean package</defaultGoal>
 		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
 		<plugins>
 			<plugin>
