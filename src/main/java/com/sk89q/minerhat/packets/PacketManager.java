@@ -75,8 +75,10 @@ public class PacketManager {
         packets.put((byte) 107, Packet107SetCreativeSlot.class);
         packets.put((byte) 108, Packet108EnchantItem.class);
         packets.put((byte) 130, Packet130UpdateSign.class);
-        packets.put((byte) 131, Packet131MapData.class);
+        packets.put((byte) 131, Packet131ItemData.class);
         packets.put((byte) 200, Packet200Statistic.class);
+        packets.put((byte) 201, Packet201PlayerInfo.class);
+        packets.put((byte) 250, Packet250PluginMessage.class);
         packets.put((byte) 254, Packet254ServerListPing.class);
         packets.put((byte) 255, Packet255KickDisconnect.class);
     }
