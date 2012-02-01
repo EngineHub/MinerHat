@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 
-public class Packet61DoorChange extends Packet {
+public class Packet61WorldEvent extends Packet {
 
     public int a;
     public int b;
@@ -35,7 +35,7 @@ public class Packet61DoorChange extends Packet {
     public int length() {
       return 20;
     }
-      
+
     @Override
     public byte getId() {
         return 61;

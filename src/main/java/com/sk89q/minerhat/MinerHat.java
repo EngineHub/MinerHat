@@ -12,7 +12,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should have received entityID copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
@@ -31,7 +31,7 @@ import jline.ConsoleReader;
 public class MinerHat {
 
     private static final Logger logger = Logger.getLogger(MinerHat.class.getName());
-    
+
     public static void main(String[] args) throws IOException {
         System.out.println("MinerHat (c) Copyright 2011 sk89q <http://www.sk89q.com>");
         System.out.println("All rights reserved.");
@@ -51,7 +51,7 @@ public class MinerHat {
         }
 
         MinecraftProxyServer server = null;
-        
+
         try {
             server = new MinecraftProxyServer(1111, InetAddress.getLocalHost(), 25565);
         } catch (UnknownHostException ex) {

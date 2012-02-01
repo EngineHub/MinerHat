@@ -6,23 +6,27 @@ import java.io.IOException;
 
 public class Packet70Bed extends Packet {
 
-    public int b;
+    public int reasonCode;
+    public int gameMode;
+
 
     public Packet70Bed() {}
 
     @Override
     public void read(DataInputStream stream) throws IOException {
-        this.b = stream.readByte();
+        this.reasonCode = stream.readByte();
+        this.gameMode = stream.readByte();
     }
 
     @Override
     public void write(DataOutputStream stream) throws IOException {
-        stream.writeByte(this.b);
+        stream.writeByte(this.reasonCode);
+        stream.writeByte(this.gameMode);
     }
 
     @Override
     public int length() {
-        return 1;
+        return 2;
     }
 
     @Override

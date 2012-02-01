@@ -6,26 +6,26 @@ import java.io.IOException;
 
 public class Packet71Weather extends Packet {
 
-    public int a;
-    public int b;
-    public int c;
-    public int d;
-    public int e;
+    public int entityID;
+    public byte unknown; // Always True from wiki. I have my doubts, investigate this!
+    public int x;
+    public int y;
+    public int z;
 
    public void read(DataInputStream datainputstream) throws IOException {
-        this.a = datainputstream.readInt();
-        this.e = datainputstream.readByte();
-        this.b = datainputstream.readInt();
-        this.c = datainputstream.readInt();
-        this.d = datainputstream.readInt();
+        this.entityID = datainputstream.readInt();
+        this.unknown = datainputstream.readByte();
+        this.x = datainputstream.readInt();
+        this.y = datainputstream.readInt();
+        this.z = datainputstream.readInt();
     }
 
     public void write(DataOutputStream dataoutputstream) throws IOException {
-        dataoutputstream.writeInt(this.a);
-        dataoutputstream.writeByte(this.e);
-        dataoutputstream.writeInt(this.b);
-        dataoutputstream.writeInt(this.c);
-        dataoutputstream.writeInt(this.d);
+        dataoutputstream.writeInt(this.entityID);
+        dataoutputstream.writeByte(this.unknown);
+        dataoutputstream.writeInt(this.x);
+        dataoutputstream.writeInt(this.y);
+        dataoutputstream.writeInt(this.z);
     }
 
     @Override

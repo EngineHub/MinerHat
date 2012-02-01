@@ -62,7 +62,7 @@ public class PacketManager {
         packets.put((byte) 53, Packet53BlockChange.class);
         packets.put((byte) 54, Packet54PlayNoteBlock.class);
         packets.put((byte) 60, Packet60Explosion.class);
-        packets.put((byte) 61, Packet61DoorChange.class);
+        packets.put((byte) 61, Packet61WorldEvent.class);
         packets.put((byte) 70, Packet70Bed.class);
         packets.put((byte) 71, Packet71Weather.class);
         packets.put((byte) 100, Packet100OpenWindow.class);
