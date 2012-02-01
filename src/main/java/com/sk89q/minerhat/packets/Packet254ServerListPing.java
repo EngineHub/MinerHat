@@ -12,22 +12,13 @@ public class Packet254ServerListPing extends Packet {
     }
 
     @Override
-    public void read(DataInputStream stream) throws IOException {
-        String data = read(stream, 256);
-
-    }
+    public void read(DataInputStream stream) throws IOException {}
 
     @Override
-    public void write(DataOutputStream stream) throws IOException {
-        stream.writeByte(254);
-    }
+    public void write(DataOutputStream stream) throws IOException {}
 
     @Override
     public int length() {
-        return 256;
-    }
-
-    public String toString() {
-        return "Wee ping";
+        return 0;
     }
 }
