@@ -73,6 +73,7 @@ public class PacketManager {
         packets.put((byte) 105, Packet105CraftProgressBar.class);
         packets.put((byte) 106, Packet106Transaction.class);
         packets.put((byte) 107, Packet107SetCreativeSlot.class);
+        packets.put((byte) 108, Packet108EnchantItem.class);
         packets.put((byte) 130, Packet130UpdateSign.class);
         packets.put((byte) 131, Packet131MapData.class);
         packets.put((byte) 200, Packet200Statistic.class);
