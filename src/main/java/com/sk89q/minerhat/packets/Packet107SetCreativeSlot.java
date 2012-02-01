@@ -4,9 +4,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class Packet103SetSlot extends Packet {
+public class Packet107SetCreativeSlot extends Packet {
 
-    public byte windowID;
     public short slot;
     public short itemId;
     public byte itemCount;
@@ -14,7 +13,6 @@ public class Packet103SetSlot extends Packet {
 
     @Override
     public void read(DataInputStream stream) throws IOException {
-        this.windowID = stream.readByte();
         this.slot = stream.readShort();
         this.itemId = stream.readShort();
 
@@ -26,7 +24,6 @@ public class Packet103SetSlot extends Packet {
 
     @Override
     public void write(DataOutputStream stream) throws IOException {
-        stream.writeByte(this.windowID);
         stream.writeShort(this.slot);
         stream.writeShort(this.itemId);
         if (itemId >= 0) {
@@ -42,14 +39,12 @@ public class Packet103SetSlot extends Packet {
 
     @Override
     public byte getId() {
-        return 103;
+        return 107;
     }
 
     public String toString(){
         StringBuilder result = new StringBuilder();
         result.append(this.getClass().getName() + " -> ");
-        result.append(" ID: ");
-        result.append(windowID);
         result.append(" Slot: ");
         result.append(slot);
         result.append(" ItemCount: ");
