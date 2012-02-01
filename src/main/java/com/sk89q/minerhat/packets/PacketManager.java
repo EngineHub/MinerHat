@@ -32,7 +32,7 @@ public class PacketManager {
         packets.put((byte) 14, Packet14BlockDig.class);
         packets.put((byte) 15, Packet15Place.class);
         packets.put((byte) 16, Packet16BlockItemSwitch.class);
-        packets.put((byte) 17, Packet17UseBed.class);
+        packets.put((byte) 17, Packet17EntityLocationAction.class);
         packets.put((byte) 18, Packet18ArmAnimation.class);
         packets.put((byte) 19, Packet19EntityAction.class);
         packets.put((byte) 20, Packet20NamedEntitySpawn.class);

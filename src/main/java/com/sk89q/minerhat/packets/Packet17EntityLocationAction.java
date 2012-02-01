@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class Packet17UseBed extends Packet {
+public class Packet17EntityLocationAction extends Packet {
 
     public int id;
     public byte inBed;

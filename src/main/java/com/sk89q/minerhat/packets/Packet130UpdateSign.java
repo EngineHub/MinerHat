@@ -24,7 +24,7 @@ public class Packet130UpdateSign extends Packet {
         result.append(lines.toString());
         return result.toString();
     }
-    
+
     @Override
     public void read(DataInputStream stream) throws IOException {
         this.x = stream.readInt();
@@ -33,7 +33,6 @@ public class Packet130UpdateSign extends Packet {
         this.lines = new String[4];
 
         for (int i = 0; i < 4; ++i) {
-            //this.lines[i] = stream.readUTF();
             this.lines[i] = read(stream, 15);
         }
     }
@@ -45,7 +44,6 @@ public class Packet130UpdateSign extends Packet {
         stream.writeInt(this.z);
 
         for (int i = 0; i < 4; ++i) {
-            //stream.writeUTF(this.lines[i]);
             write(this.lines[i], stream);
         }
     }

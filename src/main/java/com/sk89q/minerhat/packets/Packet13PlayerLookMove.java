@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 public class Packet13PlayerLookMove extends Packet10Flying {
-    
+
     public double x;
     public double a; // Either Y or Stance -- Y if from Client, otherwise it's Stance -- Stupid Notch
     public double b; // Either Y or Stance -- Stance if from Client, other it's Y -- Stupid Notch
@@ -37,27 +37,27 @@ public class Packet13PlayerLookMove extends Packet10Flying {
 
     @Override
     public int length() {
-        return 13;
+        return 41;
     }
 
     @Override
     public byte getId() {
         return 13;
     }
-    
+
     public String toString(){
         StringBuilder result = new StringBuilder();
         result.append(this.getClass().getName() + " -> ");
         result.append("X: ");
         result.append(this.x);
         result.append(" Y: ");
-        
+
         if(this.toServer){
-            result.append(this.a);            
+            result.append(this.a);
         } else {
             result.append(this.b);
         }
-        
+
         result.append(" Z: ");
         result.append(z);
         result.append(" Yaw: ");
@@ -67,11 +67,11 @@ public class Packet13PlayerLookMove extends Packet10Flying {
         result.append(" Stance: ");
 
         if(this.toServer){
-            result.append(this.b);            
+            result.append(this.b);
         } else {
             result.append(this.a);
         }
-        
+
         return result.toString();
     }
 }

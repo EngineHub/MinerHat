@@ -30,7 +30,6 @@ public class Packet20NamedEntitySpawn extends Packet {
     @Override
     public void write(DataOutputStream dataoutputstream) throws IOException {
         dataoutputstream.writeInt(this.eid);
-        //dataoutputstream.writeUTF(this.name);
         write(this.name, dataoutputstream);
         dataoutputstream.writeInt(this.x);
         dataoutputstream.writeInt(this.y);

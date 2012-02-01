@@ -4,44 +4,38 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class Packet25EntityPainting extends Packet {
+public class Packet26AddExpOrb extends Packet {
+    private int entityID;
+    private int x;
+    private int y;
+    private short count;
+    private int z;
 
-    public int eid;
-    public int x;
-    public int y;
-    public int z;
-    public int direction;
-    public String title;
-
-    public Packet25EntityPainting() {}
+    @Override
+    public byte getId() {
+        return 26;
+    }
 
     @Override
     public void read(DataInputStream stream) throws IOException {
-        this.eid = stream.readInt();
-        this.title = read(stream, "SkullAndRoses".length());
+        this.entityID = stream.readInt();
         this.x = stream.readInt();
         this.y = stream.readInt();
         this.z = stream.readInt();
-        this.direction = stream.readInt();
+        this.count = stream.readShort();
     }
 
     @Override
     public void write(DataOutputStream stream) throws IOException {
-        stream.writeInt(this.eid);
-        write(this.title, stream);
+        stream.writeInt(this.entityID);
         stream.writeInt(this.x);
         stream.writeInt(this.y);
         stream.writeInt(this.z);
-        stream.writeInt(this.direction);
+        stream.writeInt(this.count);
     }
 
     @Override
     public int length() {
-        return 24;
-    }
-
-    @Override
-    public byte getId() {
-        return 25;
+        return 18;
     }
 }
