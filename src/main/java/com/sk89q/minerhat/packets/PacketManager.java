@@ -41,6 +41,7 @@ public class PacketManager {
         packets.put((byte) 23, Packet23VehicleSpawn.class);
         packets.put((byte) 24, Packet24MobSpawn.class);
         packets.put((byte) 25, Packet25EntityPainting.class);
+        packets.put((byte) 26, Packet26AddExpOrb.class);
         packets.put((byte) 27, Packet27.class);
         packets.put((byte) 28, Packet28EntityVelocity.class);
         packets.put((byte) 29, Packet29DestroyEntity.class);
@@ -52,6 +53,9 @@ public class PacketManager {
         packets.put((byte) 38, Packet38EntityStatus.class);
         packets.put((byte) 39, Packet39AttachEntity.class);
         packets.put((byte) 40, Packet40EntityMetadata.class);
+        packets.put((byte) 41, Packet41MobEffect.class);
+        packets.put((byte) 42, Packet42RemoveEffect.class);
+        packets.put((byte) 43, Packet43SetExp.class);
         packets.put((byte) 50, Packet50PreChunk.class);
         packets.put((byte) 51, Packet51MapChunk.class);
         packets.put((byte) 52, Packet52MultiBlockChange.class);
